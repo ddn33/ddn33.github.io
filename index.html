@@ -353,7 +353,7 @@
 <main>
 
   <section id="hero">
-    <p class="label">// AI Engineer</p>
+    <p class="label">AI Engineer</p>
     <h1 class="hero-name">Daniele<br>Di Noto</h1>
     <p class="hero-sub">
       Prendo i modelli AI disponibili e li metto al lavoro su problemi concreti.
@@ -366,7 +366,7 @@
   </section>
 
   <section id="about">
-    <p class="label">// about</p>
+    <p class="label">about</p>
     <h2 class="title">Come ci sono arrivato</h2>
     <div class="about-grid">
       <div class="about-text">
@@ -439,7 +439,7 @@
   </section>
 
   <section id="experience">
-    <p class="label">// experience</p>
+    <p class="label">experience</p>
     <h2 class="title">Esperienza</h2>
     <div class="timeline">
 
@@ -527,7 +527,7 @@
   </section>
 
   <section id="contact">
-    <p class="label">// contact</p>
+    <p class="label">contact</p>
     <h2 class="title">Parliamoci</h2>
     <div class="contact-grid">
       <div class="contact-text">
@@ -599,50 +599,34 @@
   canvas.width = W;
   canvas.height = H;
 
-  const mouse = { x: W / 2, y: H / 2 };
+  const mouse = { x: -1000, y: -1000 };
   let mouseActive = false;
 
-  /* HC palette: white, cyan, yellow — matches the theme */
-  const PALETTE = [
-    "#ffffff","#cccccc","#aaaaaa",
-    "#1aebff","#00ccee",
-    "#ffff00","#dddd00",
-  ];
+  const STATIC_COLORS = ["#ffffff","#cccccc","#aaaaaa","#777777","#1aebff","#00ccee"];
+  const SWARM_COLORS  = ["#1aebff","#00d4ff","#ffff00","#eeee00"];
 
-  class Dot {
+  // ── Static background dots — slow drift, no cursor tracking
+  class StaticDot {
     constructor() {
       this.x = Math.random() * W;
       this.y = Math.random() * H;
-      this.vx = (Math.random() - 0.5) * 0.5;
-      this.vy = (Math.random() - 0.5) * 0.5;
-      this.r = Math.random() * 1.6 + 0.4;
-      this.color = PALETTE[Math.floor(Math.random() * PALETTE.length)];
-      this.alpha = Math.random() * 0.35 + 0.15;
-      this.inv_mass = 1 / (this.r * 0.8 + 0.2);
+      this.vx = (Math.random() - 0.5) * 0.25;
+      this.vy = (Math.random() - 0.5) * 0.25;
+      this.r = Math.random() * 1.4 + 0.4;
+      this.color = STATIC_COLORS[Math.floor(Math.random() * STATIC_COLORS.length)];
+      this.alpha = Math.random() * 0.3 + 0.12;
     }
     update() {
-      if (mouseActive) {
-        const dx = mouse.x - this.x;
-        const dy = mouse.y - this.y;
-        const d2 = dx * dx + dy * dy;
-        const d = Math.sqrt(d2);
-        if (d > 8) {
-          const f = Math.min(1800 / d2, 1.2) * this.inv_mass;
-          this.vx += (dx / d) * f;
-          this.vy += (dy / d) * f;
-        }
-      } else {
-        this.vx += (Math.random() - 0.5) * 0.025;
-        this.vy += (Math.random() - 0.5) * 0.025;
-      }
-      this.vx *= 0.955;
-      this.vy *= 0.955;
+      this.vx += (Math.random() - 0.5) * 0.012;
+      this.vy += (Math.random() - 0.5) * 0.012;
+      this.vx *= 0.975;
+      this.vy *= 0.975;
       this.x += this.vx;
       this.y += this.vy;
-      if (this.x < 0)  { this.x = 0;  this.vx = Math.abs(this.vx) * 0.4; }
-      if (this.x > W)  { this.x = W;  this.vx = -Math.abs(this.vx) * 0.4; }
-      if (this.y < 0)  { this.y = 0;  this.vy = Math.abs(this.vy) * 0.4; }
-      if (this.y > H)  { this.y = H;  this.vy = -Math.abs(this.vy) * 0.4; }
+      if (this.x < 0) { this.x = 0; this.vx =  Math.abs(this.vx) * 0.5; }
+      if (this.x > W) { this.x = W; this.vx = -Math.abs(this.vx) * 0.5; }
+      if (this.y < 0) { this.y = 0; this.vy =  Math.abs(this.vy) * 0.5; }
+      if (this.y > H) { this.y = H; this.vy = -Math.abs(this.vy) * 0.5; }
     }
     draw() {
       ctx.beginPath();
@@ -653,20 +637,89 @@
     }
   }
 
-  const dots = Array.from({ length: 200 }, () => new Dot());
+  // ── Swarm dots — follow cursor, brighter, collide with static dots
+  class SwarmDot {
+    constructor() {
+      this.x = Math.random() * W;
+      this.y = Math.random() * H;
+      this.vx = 0;
+      this.vy = 0;
+      this.r = Math.random() * 1.4 + 0.8;
+      this.color = SWARM_COLORS[Math.floor(Math.random() * SWARM_COLORS.length)];
+      this.alpha = Math.random() * 0.25 + 0.55;
+    }
+    update() {
+      if (mouseActive) {
+        const dx = mouse.x - this.x;
+        const dy = mouse.y - this.y;
+        const d = Math.sqrt(dx * dx + dy * dy);
+        if (d > 1) {
+          const f = Math.min(d * 0.055, 2.8);
+          this.vx += (dx / d) * f;
+          this.vy += (dy / d) * f;
+        }
+        // organic turbulence keeps the swarm alive
+        this.vx += (Math.random() - 0.5) * 1.1;
+        this.vy += (Math.random() - 0.5) * 1.1;
+      } else {
+        this.vx += (Math.random() - 0.5) * 0.02;
+        this.vy += (Math.random() - 0.5) * 0.02;
+      }
+      this.vx *= 0.82;
+      this.vy *= 0.82;
+      this.x += this.vx;
+      this.y += this.vy;
+      if (this.x < 0) { this.x = 0; this.vx =  Math.abs(this.vx) * 0.5; }
+      if (this.x > W) { this.x = W; this.vx = -Math.abs(this.vx) * 0.5; }
+      if (this.y < 0) { this.y = 0; this.vy =  Math.abs(this.vy) * 0.5; }
+      if (this.y > H) { this.y = H; this.vy = -Math.abs(this.vy) * 0.5; }
+    }
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+      ctx.fillStyle = this.color;
+      ctx.globalAlpha = this.alpha;
+      ctx.fill();
+    }
+  }
 
+  const staticDots = Array.from({ length: 160 }, () => new StaticDot());
+  const swarmDots  = Array.from({ length: 40  }, () => new SwarmDot());
+
+  // Swarm particles collide with static ones, knocking them around
+  function handleCollisions() {
+    for (const s of swarmDots) {
+      for (const p of staticDots) {
+        const dx = p.x - s.x;
+        const dy = p.y - s.y;
+        const d2 = dx * dx + dy * dy;
+        const thresh = s.r + p.r + 3;
+        if (d2 < thresh * thresh && d2 > 0.01) {
+          const d = Math.sqrt(d2);
+          const overlap = (thresh - d) / thresh;
+          const push = overlap * 3.0;
+          p.vx += (dx / d) * push;
+          p.vy += (dy / d) * push;
+          s.vx -= (dx / d) * push * 0.15;
+          s.vy -= (dy / d) * push * 0.15;
+        }
+      }
+    }
+  }
+
+  // Constellation edges between static dots only
   function drawEdges() {
     const D = 70;
-    for (let i = 0; i < dots.length; i++) {
-      for (let j = i + 1; j < dots.length; j++) {
-        const dx = dots[i].x - dots[j].x;
-        const dy = dots[i].y - dots[j].y;
-        const d = Math.sqrt(dx*dx + dy*dy);
+    for (let i = 0; i < staticDots.length; i++) {
+      for (let j = i + 1; j < staticDots.length; j++) {
+        const dx = staticDots[i].x - staticDots[j].x;
+        const dy = staticDots[i].y - staticDots[j].y;
+        const d = Math.sqrt(dx * dx + dy * dy);
         if (d < D) {
           ctx.beginPath();
-          ctx.moveTo(dots[i].x, dots[i].y);
-          ctx.lineTo(dots[j].x, dots[j].y);
-          ctx.strokeStyle = `rgba(255,255,255,${(1 - d/D) * 0.07})`;
+          ctx.moveTo(staticDots[i].x, staticDots[i].y);
+          ctx.lineTo(staticDots[j].x, staticDots[j].y);
+          ctx.strokeStyle = `rgba(255,255,255,${(1 - d / D) * 0.07})`;
           ctx.globalAlpha = 1;
           ctx.lineWidth = 0.5;
           ctx.stroke();
@@ -675,23 +728,12 @@
     }
   }
 
-  function drawGlow() {
-    if (!mouseActive) return;
-    const g = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 80);
-    g.addColorStop(0, "rgba(26,235,255,0.06)");
-    g.addColorStop(1, "rgba(26,235,255,0)");
-    ctx.fillStyle = g;
-    ctx.globalAlpha = 1;
-    ctx.beginPath();
-    ctx.arc(mouse.x, mouse.y, 80, 0, Math.PI * 2);
-    ctx.fill();
-  }
-
   function loop() {
     ctx.clearRect(0, 0, W, H);
-    drawGlow();
     drawEdges();
-    for (const d of dots) { d.update(); d.draw(); }
+    handleCollisions();
+    for (const d of staticDots) { d.update(); d.draw(); }
+    for (const d of swarmDots)  { d.update(); d.draw(); }
     ctx.globalAlpha = 1;
     requestAnimationFrame(loop);
   }
