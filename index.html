@@ -6,24 +6,25 @@
   <title>Daniele Di Noto — AI Engineer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #070a13;
-      --border: #182035;
-      --text-primary: #e8edf5;
-      --text-secondary: #8b9bb5;
-      --cyan: #00d4ff;
-      --violet: #7c3aed;
+      --bg:      #000000;
+      --surface: #0d0d0d;
+      --border:  rgba(255,255,255,0.15);
+      --text:    #ffffff;
+      --muted:   #888888;
+      --cyan:    #1aebff;
+      --yellow:  #ffff00;
     }
 
     html { scroll-behavior: smooth; }
 
     body {
       background: var(--bg);
-      color: var(--text-primary);
+      color: var(--text);
       font-family: "Inter", sans-serif;
       font-size: 16px;
       line-height: 1.6;
@@ -38,6 +39,7 @@
       pointer-events: none;
     }
 
+    /* ── NAV ── */
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -45,54 +47,54 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1.25rem 3rem;
-      background: rgba(7, 10, 19, 0.6);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(24, 32, 53, 0.6);
+      padding: 1.1rem 3rem;
+      background: #000000;
+      border-bottom: 1px solid rgba(255,255,255,0.12);
     }
 
     .logo {
-      font-family: "Space Grotesk", sans-serif;
+      font-family: "JetBrains Mono", monospace;
       font-weight: 700;
-      font-size: 1.1rem;
-      color: var(--text-primary);
+      font-size: 1rem;
+      color: var(--text);
       text-decoration: none;
       letter-spacing: -0.02em;
     }
     .logo span { color: var(--cyan); }
 
-    nav ul { display: flex; gap: 2.25rem; list-style: none; }
+    nav ul { display: flex; gap: 2rem; list-style: none; }
     nav ul a {
-      color: var(--text-secondary);
+      color: var(--muted);
       text-decoration: none;
-      font-size: 0.875rem;
+      font-size: 0.825rem;
       font-weight: 500;
-      transition: color 0.2s;
+      letter-spacing: 0.03em;
+      transition: color 0.15s;
     }
-    nav ul a:hover { color: var(--text-primary); }
+    nav ul a:hover { color: var(--text); }
 
     main { position: relative; z-index: 1; }
 
     section { padding: 6.5rem 10vw; }
+    section + section { border-top: 1px solid rgba(255,255,255,0.08); }
 
-    /* sottile separatore tra sezioni — nessun background solido */
-    section + section { border-top: 1px solid rgba(24, 32, 53, 0.5); }
-
+    /* labels in yellow like VS Code HC symbols */
     .label {
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.18em;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--cyan);
+      color: var(--yellow);
       margin-bottom: 0.75rem;
     }
 
     .title {
-      font-family: "Space Grotesk", sans-serif;
-      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-family: "JetBrains Mono", monospace;
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
       font-weight: 700;
       letter-spacing: -0.02em;
-      color: var(--text-primary);
+      color: var(--text);
       margin-bottom: 3rem;
     }
 
@@ -107,77 +109,100 @@
     }
 
     .hero-name {
-      font-family: "Space Grotesk", sans-serif;
-      font-size: clamp(3rem, 8vw, 6.5rem);
+      font-family: "JetBrains Mono", monospace;
+      font-size: clamp(2.8rem, 7.5vw, 6rem);
       font-weight: 700;
       line-height: 1.0;
-      letter-spacing: -0.04em;
+      letter-spacing: -0.03em;
       margin-bottom: 1.5rem;
-      background: linear-gradient(130deg, var(--text-primary) 20%, var(--cyan) 60%, var(--violet) 100%);
+      /* subtle white → cyan — the only gradient allowed */
+      background: linear-gradient(90deg, #ffffff 40%, var(--cyan) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
 
     .hero-sub {
-      font-size: clamp(1rem, 1.8vw, 1.2rem);
-      color: var(--text-secondary);
-      max-width: 520px;
+      font-size: clamp(0.95rem, 1.6vw, 1.15rem);
+      color: var(--muted);
+      max-width: 500px;
       line-height: 1.8;
       margin-bottom: 3rem;
     }
 
-    .cta-row { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .cta-row { display: flex; gap: 0.75rem; flex-wrap: wrap; }
 
     .btn {
       display: inline-flex;
       align-items: center;
       gap: 0.4rem;
-      padding: 0.7rem 1.6rem;
-      border-radius: 8px;
+      padding: 0.65rem 1.4rem;
+      font-family: "JetBrains Mono", monospace;
       font-weight: 600;
-      font-size: 0.875rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.02em;
       text-decoration: none;
-      transition: opacity 0.2s, transform 0.2s;
+      border-radius: 2px;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
     }
-    .btn:hover { opacity: 0.85; transform: translateY(-2px); }
-    .btn-filled { background: linear-gradient(135deg, var(--cyan), var(--violet)); color: #fff; }
-    .btn-outline { border: 1px solid var(--border); color: var(--text-secondary); }
-    .btn-outline:hover { border-color: var(--cyan); color: var(--text-primary); }
+    .btn-filled {
+      background: var(--cyan);
+      color: #000000;
+      border: 1px solid var(--cyan);
+    }
+    .btn-filled:hover { background: #ffffff; border-color: #ffffff; }
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid rgba(255,255,255,0.35);
+    }
+    .btn-outline:hover { border-color: var(--cyan); color: var(--cyan); }
 
     /* ── ABOUT ── */
     .about-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 4rem;
-      align-items: center;
+      align-items: start;
     }
 
     .about-text p {
-      color: var(--text-secondary);
-      font-size: 1.025rem;
+      color: var(--muted);
+      font-size: 1rem;
       line-height: 1.85;
-      margin-bottom: 1.1rem;
+      margin-bottom: 1rem;
     }
-    .about-text strong { color: var(--text-primary); }
+    .about-text strong { color: var(--text); font-weight: 600; }
 
     .skills {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 0.875rem;
+      gap: 0.75rem;
     }
 
     .skill-card {
-      padding: 1.2rem;
-      background: rgba(7, 10, 19, 0.55);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      transition: border-color 0.2s, transform 0.2s;
+      padding: 1.1rem;
+      background: var(--surface);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 2px;
+      transition: border-color 0.15s;
     }
-    .skill-card:hover { border-color: rgba(0,212,255,0.4); transform: translateY(-2px); }
-    .skill-card .icon { font-size: 1.4rem; margin-bottom: 0.5rem; }
-    .skill-card h3 { font-size: 0.875rem; font-weight: 600; margin-bottom: 0.25rem; }
-    .skill-card p { font-size: 0.775rem; color: var(--text-secondary); line-height: 1.5; }
+    .skill-card:hover { border-color: var(--cyan); }
+
+    .skill-card .ic {
+      width: 18px; height: 18px;
+      margin-bottom: 0.7rem;
+      color: var(--cyan);
+    }
+    .skill-card .ic svg { width: 100%; height: 100%; display: block; }
+    .skill-card h3 {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+      color: var(--text);
+    }
+    .skill-card p { font-size: 0.75rem; color: var(--muted); line-height: 1.5; }
 
     /* ── TIMELINE ── */
     .timeline { padding-left: 1.75rem; position: relative; }
@@ -186,56 +211,59 @@
       position: absolute;
       left: 0; top: 0.4rem; bottom: 0;
       width: 1px;
-      background: linear-gradient(to bottom, var(--cyan) 0%, var(--violet) 60%, transparent 100%);
+      background: rgba(255,255,255,0.2);
     }
 
-    .titem { position: relative; padding-bottom: 3rem; }
+    .titem { position: relative; padding-bottom: 2.75rem; }
     .titem:last-child { padding-bottom: 0; }
     .titem::before {
       content: "";
       position: absolute;
-      left: -2.15rem; top: 0.3rem;
+      left: -2.15rem; top: 0.32rem;
       width: 9px; height: 9px;
-      border-radius: 50%;
-      background: var(--cyan);
-      box-shadow: 0 0 10px var(--cyan);
+      border-radius: 0; /* square dot — very HC */
+      background: var(--yellow);
     }
 
     .tdate {
-      font-size: 0.72rem;
-      font-weight: 700;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.68rem;
+      font-weight: 600;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--cyan);
-      margin-bottom: 0.35rem;
+      color: var(--yellow);
+      margin-bottom: 0.3rem;
     }
     .trole {
-      font-family: "Space Grotesk", sans-serif;
-      font-size: 1.15rem;
-      font-weight: 600;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text);
       margin-bottom: 0.2rem;
     }
     .tcompany {
-      font-size: 0.875rem;
-      color: var(--violet);
+      font-size: 0.85rem;
+      color: var(--cyan);
       font-weight: 500;
-      margin-bottom: 0.7rem;
+      margin-bottom: 0.65rem;
     }
     .tdesc {
-      font-size: 0.925rem;
-      color: var(--text-secondary);
+      font-size: 0.9rem;
+      color: var(--muted);
       line-height: 1.75;
       max-width: 600px;
     }
-    .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.75rem; }
+    .tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.7rem; }
     .tag {
-      padding: 0.18rem 0.55rem;
-      background: rgba(0,212,255,0.07);
-      border: 1px solid rgba(0,212,255,0.2);
-      border-radius: 4px;
-      font-size: 0.72rem;
-      font-weight: 600;
-      color: var(--cyan);
+      padding: 0.15rem 0.5rem;
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 1px;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.68rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.6);
+      letter-spacing: 0.02em;
     }
 
     /* ── CONTACT ── */
@@ -245,49 +273,58 @@
       gap: 4rem;
     }
     .contact-text p {
-      color: var(--text-secondary);
-      font-size: 1.025rem;
+      color: var(--muted);
+      font-size: 1rem;
       line-height: 1.85;
       margin-bottom: 1rem;
     }
-    .contact-links { display: flex; flex-direction: column; gap: 0.875rem; }
+    .contact-links { display: flex; flex-direction: column; gap: 0.75rem; }
     .clink {
       display: flex;
       align-items: center;
-      gap: 1rem;
-      padding: 0.9rem 1.1rem;
-      background: rgba(7, 10, 19, 0.55);
-      border: 1px solid var(--border);
-      border-radius: 10px;
+      gap: 0.9rem;
+      padding: 0.85rem 1rem;
+      background: var(--surface);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 2px;
       text-decoration: none;
-      transition: border-color 0.2s, transform 0.2s;
+      transition: border-color 0.15s;
     }
-    .clink:hover { border-color: rgba(0,212,255,0.4); transform: translateX(5px); }
+    .clink:hover { border-color: var(--cyan); }
     .clink-icon {
-      width: 38px; height: 38px;
+      width: 34px; height: 34px;
       display: flex; align-items: center; justify-content: center;
-      border-radius: 7px;
-      background: rgba(0,212,255,0.09);
-      font-size: 1rem;
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 2px;
+      color: var(--cyan);
       flex-shrink: 0;
     }
+    .clink-icon svg { width: 16px; height: 16px; display: block; }
     .clink-lbl {
-      font-size: 0.7rem;
-      font-weight: 700;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.65rem;
+      font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--text-secondary);
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      margin-bottom: 0.1rem;
     }
-    .clink-val { font-size: 0.9rem; color: var(--text-primary); font-weight: 500; }
+    .clink-val {
+      font-size: 0.875rem;
+      color: var(--text);
+      font-weight: 500;
+    }
 
     footer {
       position: relative;
       z-index: 1;
       text-align: center;
-      padding: 1.75rem;
-      border-top: 1px solid rgba(24,32,53,0.5);
-      color: var(--text-secondary);
-      font-size: 0.78rem;
+      padding: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      color: var(--muted);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.05em;
     }
 
     @media (max-width: 768px) {
@@ -305,92 +342,117 @@
 <canvas id="canvas"></canvas>
 
 <nav>
-  <a href="#hero" class="logo">DDN<span>.</span></a>
+  <a href="#hero" class="logo">DDN<span>_</span></a>
   <ul>
-    <li><a href="#about">About</a></li>
-    <li><a href="#experience">Esperienza</a></li>
-    <li><a href="#contact">Contatti</a></li>
+    <li><a href="#about">about</a></li>
+    <li><a href="#experience">experience</a></li>
+    <li><a href="#contact">contact</a></li>
   </ul>
 </nav>
 
 <main>
 
   <section id="hero">
-    <p class="label">AI Engineer</p>
+    <p class="label">// AI Engineer</p>
     <h1 class="hero-name">Daniele<br>Di Noto</h1>
     <p class="hero-sub">
-      Da ricercatore di Computer Vision a ingegnere di sistemi AI in produzione.
-      Costruisco applicazioni intelligenti che trasformano i modelli fondazionali
-      in valore reale e misurabile.
+      Prendo i modelli AI disponibili e li metto al lavoro su problemi concreti.
+      Niente magia: architettura solida, integrazione pulita, output che funzionano sul serio.
     </p>
     <div class="cta-row">
-      <a href="#contact" class="btn btn-filled">Parliamoci →</a>
+      <a href="#contact" class="btn btn-filled">Parliamoci &rarr;</a>
       <a href="#experience" class="btn btn-outline">Vedi il percorso</a>
     </div>
   </section>
 
   <section id="about">
-    <p class="label">Chi sono</p>
-    <h2 class="title">Dal laboratorio alla produzione</h2>
+    <p class="label">// about</p>
+    <h2 class="title">Come ci sono arrivato</h2>
     <div class="about-grid">
       <div class="about-text">
         <p>
-          Ho iniziato la mia carriera tecnica con la <strong>Computer Vision</strong>:
-          reti neurali convoluzionali, rilevamento oggetti, segmentazione semantica.
-          Quel rigore scientifico ha plasmato il modo in cui affronto ogni problema tecnologico.
+          Ho iniziato con la <strong>Computer Vision</strong> durante la magistrale.
+          CNN, YOLO, dati industriali, qualche progetto in ambito medicale.
+          Ho imparato in fretta che i dati reali sono sempre pi&ugrave; complicati di quelli nei benchmark.
         </p>
         <p>
-          Negli anni successivi ho attraversato il mondo della <strong>consulenza per l&apos;innovazione</strong>,
-          dove ho imparato che la tecnologia da sola non basta: occorre sapere come introdurla,
-          farla adottare e farla rendere all&apos;interno di organizzazioni complesse.
+          Dopo la laurea sono passato alla consulenza sull&apos;innovazione &mdash; due anni da junior, uno da senior.
+          Lavori a stretto contatto con le aziende e capisci come funziona davvero l&apos;adozione tecnologica:
+          lenta, piena di resistenze, con aspettative spesso sbagliate.
+          Quella fase mi ha insegnato pi&ugrave; del codice.
         </p>
         <p>
-          Oggi lavoro come <strong>AI Engineer</strong>, costruendo sistemi che sfruttano
-          i modelli fondazionali disponibili — LLM, multimodali, diffusion — per creare
-          applicazioni reali: agenti autonomi, pipeline RAG, automazioni cognitive.
+          Da due anni faccio l&apos;<strong>AI Engineer</strong>.
+          Costruisco sistemi con LLM, RAG e agenti che girano su casi d&apos;uso reali.
+          L&apos;obiettivo &egrave; sempre che funzionino fuori dalla demo.
         </p>
       </div>
       <div class="skills">
+
         <div class="skill-card">
-          <div class="icon">🧠</div>
-          <h3>LLM &amp; Agenti AI</h3>
-          <p>Sistemi agentic, RAG, tool use, orchestrazione multi-agente</p>
+          <div class="ic">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="4" r="2"/><circle cx="4" cy="13" r="2"/><circle cx="20" cy="13" r="2"/>
+              <circle cx="8" cy="20" r="2"/><circle cx="16" cy="20" r="2"/>
+              <line x1="12" y1="6" x2="5.4" y2="12"/><line x1="12" y1="6" x2="18.6" y2="12"/>
+              <line x1="5.4" y1="15" x2="7.4" y2="18"/><line x1="18.6" y1="15" x2="16.6" y2="18"/>
+            </svg>
+          </div>
+          <h3>LLM &amp; Agenti</h3>
+          <p>Agenti, RAG, tool use. Faccio ragionare i modelli su dati reali.</p>
         </div>
+
         <div class="skill-card">
-          <div class="icon">👁️</div>
+          <div class="ic">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+              <circle cx="12" cy="12" r="3"/>
+            </svg>
+          </div>
           <h3>Computer Vision</h3>
-          <p>Object detection, segmentazione, modelli vision-language</p>
+          <p>CNN, YOLO, segmentazione. Utile ogni volta che i dati sono immagini.</p>
         </div>
+
         <div class="skill-card">
-          <div class="icon">⚡</div>
+          <div class="ic">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+            </svg>
+          </div>
           <h3>AI Integration</h3>
-          <p>API, embedding, vector DB, deploy su cloud e edge</p>
+          <p>API, vector store, deploy su cloud. La parte che fa girare tutto in produzione.</p>
         </div>
+
         <div class="skill-card">
-          <div class="icon">🔍</div>
-          <h3>Innovation Strategy</h3>
-          <p>AI readiness, roadmap, change management, governance</p>
+          <div class="ic">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
+            </svg>
+          </div>
+          <h3>Strategia AI</h3>
+          <p>Roadmap, assessment, workshop. So spiegare l&apos;AI anche a chi non vuole sentir parlare di codice.</p>
         </div>
+
       </div>
     </div>
   </section>
 
   <section id="experience">
-    <p class="label">Percorso</p>
+    <p class="label">// experience</p>
     <h2 class="title">Esperienza</h2>
     <div class="timeline">
 
       <div class="titem">
-        <p class="tdate">2024 &mdash; Presente</p>
+        <p class="tdate">2024 &mdash; present</p>
         <h3 class="trole">AI Engineer</h3>
         <p class="tcompany">Freelance &amp; Collaborazioni</p>
         <p class="tdesc">
-          Progettazione e sviluppo di applicazioni AI su misura per clienti
-          in settori come finanza, retail e industria manifatturiera.
-          Costruzione di agenti LLM autonomi, sistemi RAG su knowledge base aziendali,
-          pipeline di automazione cognitiva e integrazione di modelli vision-language
-          per l&apos;analisi di documenti e immagini. Focus su qualità dell&apos;output,
-          latenza e costi operativi in produzione.
+          Lavoro con aziende e startup su progetti AI concreti: agenti LLM,
+          retrieval su basi documentali, integrazione di modelli fondazionali
+          in processi esistenti. Mi occupo dell&apos;intera catena &mdash; architettura,
+          sviluppo, deploy, monitoraggio. Non faccio consulenza vaga:
+          o il sistema funziona o si torna al disegno.
         </p>
         <div class="tags">
           <span class="tag">LangChain</span>
@@ -409,17 +471,15 @@
         <h3 class="trole">Senior Innovation Consultant</h3>
         <p class="tcompany">Consulenza Strategica &amp; Digitale</p>
         <p class="tdesc">
-          Referente tecnico senior su progetti di trasformazione digitale ad alto contenuto AI.
-          Definizione di roadmap di adozione AI per aziende mid-large, con analisi
-          di maturità digitale e disegno dell&apos;architettura tecnologica target.
-          Coordinamento di team multidisciplinari e interfaccia diretta con C-level
-          per la traduzione di visioni strategiche in piani di esecuzione concreti.
+          Progetti pi&ugrave; grossi, pi&ugrave; autonomia, pi&ugrave; responsabilit&agrave;.
+          Assessment su aziende mid-large, architetture AI target, rapporti diretti
+          con il management. Ho imparato a non vendere quello che non si riesce a consegnare.
         </p>
         <div class="tags">
           <span class="tag">AI Strategy</span>
           <span class="tag">Digital Transformation</span>
           <span class="tag">Change Management</span>
-          <span class="tag">Workshop facilitation</span>
+          <span class="tag">Workshop</span>
           <span class="tag">KPI design</span>
         </div>
       </div>
@@ -429,10 +489,9 @@
         <h3 class="trole">Innovation Consultant</h3>
         <p class="tcompany">Consulenza Strategica &amp; Digitale</p>
         <p class="tdesc">
-          Supporto a progetti di innovazione e digitalizzazione per PMI e grandi aziende.
-          Analisi di processi, identificazione di opportunità di automazione e machine learning,
-          prototipazione di soluzioni AI e presentazione a stakeholder tecnici e business.
-          Primo contatto con l&apos;ecosistema LLM emergente e relativi casi d&apos;uso aziendali.
+          Primo lavoro dopo la laurea. Analisi di processi, identificazione di casi d&apos;uso ML,
+          prototipi veloci per testare le idee. Il momento in cui i LLM sono esplosi sul mercato
+          e tutti chiedevano &ldquo;ma come si usa ChatGPT per il nostro business?&rdquo;.
         </p>
         <div class="tags">
           <span class="tag">Process Analysis</span>
@@ -446,13 +505,12 @@
       <div class="titem">
         <p class="tdate">2020 &mdash; 2022</p>
         <h3 class="trole">Computer Vision &amp; ML Engineer</h3>
-        <p class="tcompany">Ricerca Universitaria &amp; Progetti Accademici</p>
+        <p class="tcompany">Ricerca Universitaria</p>
         <p class="tdesc">
-          Durante la laurea magistrale e nell&apos;immediato post-laurea, ricerca applicata
-          su reti neurali convoluzionali per il rilevamento e la classificazione di oggetti
-          in contesti industriali e medicali. Sviluppo di pipeline di training su GPU,
-          data augmentation e ottimizzazione di modelli per il deployment su dispositivi edge.
-          Tesi magistrale focalizzata su tecniche di few-shot learning per Computer Vision.
+          Magistrale con focus su deep learning applicato alla visione artificiale.
+          Tesi su few-shot learning per riconoscimento di oggetti in contesti industriali.
+          Training su GPU, ottimizzazione per edge device, un po&apos; di collaborazioni esterne.
+          La fase in cui ho capito come funziona davvero il ciclo model&nbsp;&rarr;&nbsp;dato&nbsp;&rarr;&nbsp;risultato.
         </p>
         <div class="tags">
           <span class="tag">PyTorch</span>
@@ -469,48 +527,68 @@
   </section>
 
   <section id="contact">
-    <p class="label">Contatti</p>
-    <h2 class="title">Lavoriamo insieme</h2>
+    <p class="label">// contact</p>
+    <h2 class="title">Parliamoci</h2>
     <div class="contact-grid">
       <div class="contact-text">
         <p>
-          Hai un progetto che richiede competenze AI? Vuoi esplorare come i modelli
-          fondazionali possono automatizzare o potenziare i tuoi processi?
-          O semplicemente vuoi scambiare idee sul futuro dell&apos;intelligenza artificiale?
+          Se hai un problema concreto e pensi che l&apos;AI possa aiutare,
+          dimmi cosa stai cercando di fare. Non prometto soluzioni magiche,
+          ma ci ragiono seriamente.
         </p>
-        <p>Sono sempre aperto a nuove conversazioni.</p>
+        <p>Rispondo a tutti.</p>
       </div>
       <div class="contact-links">
+
         <a href="mailto:danieledinoto97@gmail.com" class="clink">
-          <div class="clink-icon">✉️</div>
+          <div class="clink-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+          </div>
           <div>
-            <div class="clink-lbl">Email</div>
+            <div class="clink-lbl">email</div>
             <div class="clink-val">danieledinoto97@gmail.com</div>
           </div>
         </a>
+
         <a href="https://www.linkedin.com/in/daniele-di-noto-9b3625183" class="clink" target="_blank" rel="noopener">
-          <div class="clink-icon">💼</div>
+          <div class="clink-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="2"/>
+              <line x1="8" y1="11" x2="8" y2="17"/>
+              <line x1="8" y1="7.5" x2="8" y2="8.5"/>
+              <path d="M12 17v-4a2 2 0 0 1 4 0v4"/>
+              <line x1="12" y1="11" x2="12" y2="17"/>
+            </svg>
+          </div>
           <div>
-            <div class="clink-lbl">LinkedIn</div>
+            <div class="clink-lbl">linkedin</div>
             <div class="clink-val">daniele-di-noto</div>
           </div>
         </a>
+
         <a href="https://github.com/ddn33" class="clink" target="_blank" rel="noopener">
-          <div class="clink-icon">⌨️</div>
+          <div class="clink-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="16 18 22 12 16 6"/>
+              <polyline points="8 6 2 12 8 18"/>
+            </svg>
+          </div>
           <div>
-            <div class="clink-lbl">GitHub</div>
+            <div class="clink-lbl">github</div>
             <div class="clink-val">github.com/ddn33</div>
           </div>
         </a>
+
       </div>
     </div>
   </section>
 
 </main>
 
-<footer>
-  <p>&copy; 2026 Daniele Di Noto &mdash; Costruito con passione per l&apos;innovazione.</p>
-</footer>
+<footer>&copy; 2026 Daniele Di Noto</footer>
 
 <script>
   const canvas = document.getElementById("canvas");
@@ -524,10 +602,11 @@
   const mouse = { x: W / 2, y: H / 2 };
   let mouseActive = false;
 
+  /* HC palette: white, cyan, yellow — matches the theme */
   const PALETTE = [
-    "#00d4ff","#22d3ee","#06b6d4",
-    "#3b82f6","#60a5fa",
-    "#7c3aed","#a855f7","#8b5cf6",
+    "#ffffff","#cccccc","#aaaaaa",
+    "#1aebff","#00ccee",
+    "#ffff00","#dddd00",
   ];
 
   class Dot {
@@ -536,9 +615,9 @@
       this.y = Math.random() * H;
       this.vx = (Math.random() - 0.5) * 0.5;
       this.vy = (Math.random() - 0.5) * 0.5;
-      this.r = Math.random() * 1.8 + 0.5;
+      this.r = Math.random() * 1.6 + 0.4;
       this.color = PALETTE[Math.floor(Math.random() * PALETTE.length)];
-      this.alpha = Math.random() * 0.5 + 0.35;
+      this.alpha = Math.random() * 0.35 + 0.15;
       this.inv_mass = 1 / (this.r * 0.8 + 0.2);
     }
     update() {
@@ -577,7 +656,7 @@
   const dots = Array.from({ length: 200 }, () => new Dot());
 
   function drawEdges() {
-    const D = 75;
+    const D = 70;
     for (let i = 0; i < dots.length; i++) {
       for (let j = i + 1; j < dots.length; j++) {
         const dx = dots[i].x - dots[j].x;
@@ -587,7 +666,7 @@
           ctx.beginPath();
           ctx.moveTo(dots[i].x, dots[i].y);
           ctx.lineTo(dots[j].x, dots[j].y);
-          ctx.strokeStyle = `rgba(0,212,255,${(1 - d/D) * 0.12})`;
+          ctx.strokeStyle = `rgba(255,255,255,${(1 - d/D) * 0.07})`;
           ctx.globalAlpha = 1;
           ctx.lineWidth = 0.5;
           ctx.stroke();
@@ -598,13 +677,13 @@
 
   function drawGlow() {
     if (!mouseActive) return;
-    const g = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 90);
-    g.addColorStop(0, "rgba(0,212,255,0.07)");
-    g.addColorStop(1, "rgba(0,212,255,0)");
+    const g = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 80);
+    g.addColorStop(0, "rgba(26,235,255,0.06)");
+    g.addColorStop(1, "rgba(26,235,255,0)");
     ctx.fillStyle = g;
     ctx.globalAlpha = 1;
     ctx.beginPath();
-    ctx.arc(mouse.x, mouse.y, 90, 0, Math.PI * 2);
+    ctx.arc(mouse.x, mouse.y, 80, 0, Math.PI * 2);
     ctx.fill();
   }
 
@@ -620,23 +699,16 @@
   loop();
 
   document.addEventListener("mousemove", e => {
-    mouse.x = e.clientX;
-    mouse.y = e.clientY;
-    mouseActive = true;
+    mouse.x = e.clientX; mouse.y = e.clientY; mouseActive = true;
   });
   document.addEventListener("mouseleave", () => { mouseActive = false; });
   document.addEventListener("touchmove", e => {
-    mouse.x = e.touches[0].clientX;
-    mouse.y = e.touches[0].clientY;
-    mouseActive = true;
+    mouse.x = e.touches[0].clientX; mouse.y = e.touches[0].clientY; mouseActive = true;
   }, { passive: true });
   document.addEventListener("touchend", () => { mouseActive = false; });
-
   window.addEventListener("resize", () => {
-    W = window.innerWidth;
-    H = window.innerHeight;
-    canvas.width = W;
-    canvas.height = H;
+    W = window.innerWidth; H = window.innerHeight;
+    canvas.width = W; canvas.height = H;
   });
 </script>
 </body>
