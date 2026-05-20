@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Daniele Dinoto — AI Engineer & Innovation Consultant</title>
+  <title>Daniele Di Noto — AI Engineer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -12,13 +12,11 @@
 
     :root {
       --bg: #070a13;
-      --surface: #0d1528;
       --border: #182035;
       --text-primary: #e8edf5;
       --text-secondary: #8b9bb5;
       --cyan: #00d4ff;
       --violet: #7c3aed;
-      --blue: #3b82f6;
     }
 
     html { scroll-behavior: smooth; }
@@ -26,13 +24,12 @@
     body {
       background: var(--bg);
       color: var(--text-primary);
-      font-family: 'Inter', sans-serif;
+      font-family: "Inter", sans-serif;
       font-size: 16px;
       line-height: 1.6;
       overflow-x: hidden;
     }
 
-    /* ── CANVAS ── */
     #canvas {
       position: fixed;
       top: 0; left: 0;
@@ -41,7 +38,6 @@
       pointer-events: none;
     }
 
-    /* ── NAV ── */
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -50,13 +46,13 @@
       justify-content: space-between;
       align-items: center;
       padding: 1.25rem 3rem;
-      background: rgba(7, 10, 19, 0.75);
-      backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--border);
+      background: rgba(7, 10, 19, 0.6);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(24, 32, 53, 0.6);
     }
 
     .logo {
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: "Space Grotesk", sans-serif;
       font-weight: 700;
       font-size: 1.1rem;
       color: var(--text-primary);
@@ -65,25 +61,22 @@
     }
     .logo span { color: var(--cyan); }
 
-    nav ul {
-      display: flex;
-      gap: 2.25rem;
-      list-style: none;
-    }
+    nav ul { display: flex; gap: 2.25rem; list-style: none; }
     nav ul a {
       color: var(--text-secondary);
       text-decoration: none;
       font-size: 0.875rem;
       font-weight: 500;
-      letter-spacing: 0.02em;
       transition: color 0.2s;
     }
     nav ul a:hover { color: var(--text-primary); }
 
-    /* ── LAYOUT ── */
     main { position: relative; z-index: 1; }
 
     section { padding: 6.5rem 10vw; }
+
+    /* sottile separatore tra sezioni — nessun background solido */
+    section + section { border-top: 1px solid rgba(24, 32, 53, 0.5); }
 
     .label {
       font-size: 0.7rem;
@@ -95,7 +88,7 @@
     }
 
     .title {
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: "Space Grotesk", sans-serif;
       font-size: clamp(1.8rem, 3.5vw, 2.6rem);
       font-weight: 700;
       letter-spacing: -0.02em;
@@ -114,7 +107,7 @@
     }
 
     .hero-name {
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: "Space Grotesk", sans-serif;
       font-size: clamp(3rem, 8vw, 6.5rem);
       font-weight: 700;
       line-height: 1.0;
@@ -148,28 +141,11 @@
       transition: opacity 0.2s, transform 0.2s;
     }
     .btn:hover { opacity: 0.85; transform: translateY(-2px); }
-
-    .btn-filled {
-      background: linear-gradient(135deg, var(--cyan), var(--violet));
-      color: #fff;
-    }
-    .btn-outline {
-      border: 1px solid var(--border);
-      color: var(--text-secondary);
-    }
-    .btn-outline:hover {
-      border-color: var(--cyan);
-      color: var(--text-primary);
-    }
+    .btn-filled { background: linear-gradient(135deg, var(--cyan), var(--violet)); color: #fff; }
+    .btn-outline { border: 1px solid var(--border); color: var(--text-secondary); }
+    .btn-outline:hover { border-color: var(--cyan); color: var(--text-primary); }
 
     /* ── ABOUT ── */
-    #about {
-      background: rgba(13, 21, 40, 0.55);
-      backdrop-filter: blur(10px);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-
     .about-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -193,41 +169,32 @@
 
     .skill-card {
       padding: 1.2rem;
-      background: rgba(7, 10, 19, 0.7);
+      background: rgba(7, 10, 19, 0.55);
       border: 1px solid var(--border);
       border-radius: 10px;
       transition: border-color 0.2s, transform 0.2s;
     }
-    .skill-card:hover {
-      border-color: rgba(0, 212, 255, 0.4);
-      transform: translateY(-2px);
-    }
+    .skill-card:hover { border-color: rgba(0,212,255,0.4); transform: translateY(-2px); }
     .skill-card .icon { font-size: 1.4rem; margin-bottom: 0.5rem; }
     .skill-card h3 { font-size: 0.875rem; font-weight: 600; margin-bottom: 0.25rem; }
     .skill-card p { font-size: 0.775rem; color: var(--text-secondary); line-height: 1.5; }
 
-    /* ── EXPERIENCE ── */
+    /* ── TIMELINE ── */
     .timeline { padding-left: 1.75rem; position: relative; }
-
     .timeline::before {
-      content: '';
+      content: "";
       position: absolute;
       left: 0; top: 0.4rem; bottom: 0;
       width: 1px;
       background: linear-gradient(to bottom, var(--cyan) 0%, var(--violet) 60%, transparent 100%);
     }
 
-    .titem {
-      position: relative;
-      padding-bottom: 3rem;
-    }
+    .titem { position: relative; padding-bottom: 3rem; }
     .titem:last-child { padding-bottom: 0; }
-
     .titem::before {
-      content: '';
+      content: "";
       position: absolute;
-      left: -2.15rem;
-      top: 0.3rem;
+      left: -2.15rem; top: 0.3rem;
       width: 9px; height: 9px;
       border-radius: 50%;
       background: var(--cyan);
@@ -242,88 +209,65 @@
       color: var(--cyan);
       margin-bottom: 0.35rem;
     }
-
     .trole {
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: "Space Grotesk", sans-serif;
       font-size: 1.15rem;
       font-weight: 600;
       margin-bottom: 0.2rem;
     }
-
     .tcompany {
       font-size: 0.875rem;
       color: var(--violet);
       font-weight: 500;
       margin-bottom: 0.7rem;
     }
-
     .tdesc {
       font-size: 0.925rem;
       color: var(--text-secondary);
       line-height: 1.75;
-      max-width: 580px;
+      max-width: 600px;
     }
-
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-      margin-top: 0.75rem;
-    }
-
+    .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.75rem; }
     .tag {
       padding: 0.18rem 0.55rem;
-      background: rgba(0, 212, 255, 0.07);
-      border: 1px solid rgba(0, 212, 255, 0.2);
+      background: rgba(0,212,255,0.07);
+      border: 1px solid rgba(0,212,255,0.2);
       border-radius: 4px;
       font-size: 0.72rem;
       font-weight: 600;
       color: var(--cyan);
-      letter-spacing: 0.02em;
     }
 
     /* ── CONTACT ── */
-    #contact {
-      background: rgba(13, 21, 40, 0.55);
-      backdrop-filter: blur(10px);
-      border-top: 1px solid var(--border);
-    }
-
     .contact-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 4rem;
     }
-
     .contact-text p {
       color: var(--text-secondary);
       font-size: 1.025rem;
       line-height: 1.85;
       margin-bottom: 1rem;
     }
-
     .contact-links { display: flex; flex-direction: column; gap: 0.875rem; }
-
     .clink {
       display: flex;
       align-items: center;
       gap: 1rem;
       padding: 0.9rem 1.1rem;
-      background: rgba(7, 10, 19, 0.7);
+      background: rgba(7, 10, 19, 0.55);
       border: 1px solid var(--border);
       border-radius: 10px;
       text-decoration: none;
       transition: border-color 0.2s, transform 0.2s;
     }
-    .clink:hover {
-      border-color: rgba(0, 212, 255, 0.4);
-      transform: translateX(5px);
-    }
+    .clink:hover { border-color: rgba(0,212,255,0.4); transform: translateX(5px); }
     .clink-icon {
       width: 38px; height: 38px;
       display: flex; align-items: center; justify-content: center;
       border-radius: 7px;
-      background: rgba(0, 212, 255, 0.09);
+      background: rgba(0,212,255,0.09);
       font-size: 1rem;
       flex-shrink: 0;
     }
@@ -334,24 +278,18 @@
       letter-spacing: 0.1em;
       color: var(--text-secondary);
     }
-    .clink-val {
-      font-size: 0.9rem;
-      color: var(--text-primary);
-      font-weight: 500;
-    }
+    .clink-val { font-size: 0.9rem; color: var(--text-primary); font-weight: 500; }
 
-    /* ── FOOTER ── */
     footer {
       position: relative;
       z-index: 1;
       text-align: center;
       padding: 1.75rem;
-      border-top: 1px solid var(--border);
+      border-top: 1px solid rgba(24,32,53,0.5);
       color: var(--text-secondary);
       font-size: 0.78rem;
     }
 
-    /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
       nav { padding: 1rem 1.5rem; }
       nav ul { display: none; }
@@ -367,7 +305,7 @@
 <canvas id="canvas"></canvas>
 
 <nav>
-  <a href="#hero" class="logo">DD<span>.</span></a>
+  <a href="#hero" class="logo">DDN<span>.</span></a>
   <ul>
     <li><a href="#about">About</a></li>
     <li><a href="#experience">Esperienza</a></li>
@@ -377,13 +315,13 @@
 
 <main>
 
-  <!-- HERO -->
   <section id="hero">
-    <p class="label">AI Engineer &amp; Innovation Consultant</p>
-    <h1 class="hero-name">Daniele<br>Dinoto</h1>
+    <p class="label">AI Engineer</p>
+    <h1 class="hero-name">Daniele<br>Di Noto</h1>
     <p class="hero-sub">
-      Progetto e realizzo sistemi intelligenti che trasformano la complessità in valore.
-      Dalla strategia all'implementazione, aiuto le organizzazioni a navigare la frontiera dell'Intelligenza Artificiale.
+      Da ricercatore di Computer Vision a ingegnere di sistemi AI in produzione.
+      Costruisco applicazioni intelligenti che trasformano i modelli fondazionali
+      in valore reale e misurabile.
     </p>
     <div class="cta-row">
       <a href="#contact" class="btn btn-filled">Parliamoci →</a>
@@ -391,125 +329,154 @@
     </div>
   </section>
 
-  <!-- ABOUT -->
   <section id="about">
     <p class="label">Chi sono</p>
-    <h2 class="title">Ingegneria + Strategia</h2>
+    <h2 class="title">Dal laboratorio alla produzione</h2>
     <div class="about-grid">
       <div class="about-text">
         <p>
-          Sono un <strong>AI Engineer</strong> con una forte vocazione per l'innovazione.
-          Il mio lavoro si muove tra la progettazione di sistemi di intelligenza artificiale
-          e la consulenza strategica per organizzazioni che vogliono sfruttare il potenziale
-          del machine learning e dell'automazione.
+          Ho iniziato la mia carriera tecnica con la <strong>Computer Vision</strong>:
+          reti neurali convoluzionali, rilevamento oggetti, segmentazione semantica.
+          Quel rigore scientifico ha plasmato il modo in cui affronto ogni problema tecnologico.
         </p>
         <p>
-          Unisco competenze tecniche profonde — LLM, RAG, agenti AI, MLOps —
-          alla capacità di comunicare visioni complesse e guidare team multidisciplinari
-          verso risultati concreti e misurabili.
+          Negli anni successivi ho attraversato il mondo della <strong>consulenza per l&apos;innovazione</strong>,
+          dove ho imparato che la tecnologia da sola non basta: occorre sapere come introdurla,
+          farla adottare e farla rendere all&apos;interno di organizzazioni complesse.
         </p>
         <p>
-          Credo che la tecnologia migliore sia quella invisibile: quella che funziona
-          talmente bene da diventare parte naturale dei processi umani.
+          Oggi lavoro come <strong>AI Engineer</strong>, costruendo sistemi che sfruttano
+          i modelli fondazionali disponibili — LLM, multimodali, diffusion — per creare
+          applicazioni reali: agenti autonomi, pipeline RAG, automazioni cognitive.
         </p>
       </div>
       <div class="skills">
         <div class="skill-card">
-          <div class="icon">🤖</div>
+          <div class="icon">🧠</div>
           <h3>LLM &amp; Agenti AI</h3>
-          <p>Sistemi agentic, RAG, fine-tuning, prompt engineering</p>
+          <p>Sistemi agentic, RAG, tool use, orchestrazione multi-agente</p>
+        </div>
+        <div class="skill-card">
+          <div class="icon">👁️</div>
+          <h3>Computer Vision</h3>
+          <p>Object detection, segmentazione, modelli vision-language</p>
         </div>
         <div class="skill-card">
           <div class="icon">⚡</div>
-          <h3>MLOps &amp; Cloud</h3>
-          <p>Deployment scalabile, monitoring, CI/CD per ML</p>
+          <h3>AI Integration</h3>
+          <p>API, embedding, vector DB, deploy su cloud e edge</p>
         </div>
         <div class="skill-card">
-          <div class="icon">🔭</div>
+          <div class="icon">🔍</div>
           <h3>Innovation Strategy</h3>
-          <p>Roadmap AI, assessment, change management</p>
-        </div>
-        <div class="skill-card">
-          <div class="icon">📊</div>
-          <h3>Data &amp; Analytics</h3>
-          <p>Pipeline dati, dashboarding, insights actionabili</p>
+          <p>AI readiness, roadmap, change management, governance</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- EXPERIENCE -->
   <section id="experience">
     <p class="label">Percorso</p>
     <h2 class="title">Esperienza</h2>
     <div class="timeline">
 
       <div class="titem">
-        <p class="tdate">2024 — Presente</p>
-        <h3 class="trole">AI Engineer &amp; Innovation Consultant</h3>
-        <p class="tcompany">Freelance / Consulenza</p>
+        <p class="tdate">2024 &mdash; Presente</p>
+        <h3 class="trole">AI Engineer</h3>
+        <p class="tcompany">Freelance &amp; Collaborazioni</p>
         <p class="tdesc">
-          Progettazione e implementazione di soluzioni AI per clienti enterprise.
-          Sviluppo di agenti LLM, sistemi RAG e pipeline di automazione intelligente.
-          Supporto strategico nella definizione di roadmap di trasformazione digitale.
+          Progettazione e sviluppo di applicazioni AI su misura per clienti
+          in settori come finanza, retail e industria manifatturiera.
+          Costruzione di agenti LLM autonomi, sistemi RAG su knowledge base aziendali,
+          pipeline di automazione cognitiva e integrazione di modelli vision-language
+          per l&apos;analisi di documenti e immagini. Focus su qualità dell&apos;output,
+          latenza e costi operativi in produzione.
         </p>
         <div class="tags">
           <span class="tag">LangChain</span>
-          <span class="tag">OpenAI</span>
-          <span class="tag">Python</span>
-          <span class="tag">Azure</span>
+          <span class="tag">LangGraph</span>
+          <span class="tag">OpenAI API</span>
           <span class="tag">RAG</span>
-          <span class="tag">Agenti AI</span>
+          <span class="tag">Vector DB</span>
+          <span class="tag">Python</span>
+          <span class="tag">FastAPI</span>
+          <span class="tag">Azure</span>
         </div>
       </div>
 
       <div class="titem">
-        <p class="tdate">2022 — 2024</p>
-        <h3 class="trole">Machine Learning Engineer</h3>
-        <p class="tcompany">Azienda · [da aggiornare]</p>
+        <p class="tdate">2023 &mdash; 2024</p>
+        <h3 class="trole">Senior Innovation Consultant</h3>
+        <p class="tcompany">Consulenza Strategica &amp; Digitale</p>
         <p class="tdesc">
-          Sviluppo di modelli di machine learning in produzione.
-          Gestione dell'intero ciclo di vita dei modelli: dalla ricerca e sperimentazione
-          all'A/B testing, fino al deployment e monitoring continuo in produzione.
+          Referente tecnico senior su progetti di trasformazione digitale ad alto contenuto AI.
+          Definizione di roadmap di adozione AI per aziende mid-large, con analisi
+          di maturità digitale e disegno dell&apos;architettura tecnologica target.
+          Coordinamento di team multidisciplinari e interfaccia diretta con C-level
+          per la traduzione di visioni strategiche in piani di esecuzione concreti.
+        </p>
+        <div class="tags">
+          <span class="tag">AI Strategy</span>
+          <span class="tag">Digital Transformation</span>
+          <span class="tag">Change Management</span>
+          <span class="tag">Workshop facilitation</span>
+          <span class="tag">KPI design</span>
+        </div>
+      </div>
+
+      <div class="titem">
+        <p class="tdate">2022 &mdash; 2023</p>
+        <h3 class="trole">Innovation Consultant</h3>
+        <p class="tcompany">Consulenza Strategica &amp; Digitale</p>
+        <p class="tdesc">
+          Supporto a progetti di innovazione e digitalizzazione per PMI e grandi aziende.
+          Analisi di processi, identificazione di opportunità di automazione e machine learning,
+          prototipazione di soluzioni AI e presentazione a stakeholder tecnici e business.
+          Primo contatto con l&apos;ecosistema LLM emergente e relativi casi d&apos;uso aziendali.
+        </p>
+        <div class="tags">
+          <span class="tag">Process Analysis</span>
+          <span class="tag">ML use cases</span>
+          <span class="tag">Prototyping</span>
+          <span class="tag">Python</span>
+          <span class="tag">scikit-learn</span>
+        </div>
+      </div>
+
+      <div class="titem">
+        <p class="tdate">2020 &mdash; 2022</p>
+        <h3 class="trole">Computer Vision &amp; ML Engineer</h3>
+        <p class="tcompany">Ricerca Universitaria &amp; Progetti Accademici</p>
+        <p class="tdesc">
+          Durante la laurea magistrale e nell&apos;immediato post-laurea, ricerca applicata
+          su reti neurali convoluzionali per il rilevamento e la classificazione di oggetti
+          in contesti industriali e medicali. Sviluppo di pipeline di training su GPU,
+          data augmentation e ottimizzazione di modelli per il deployment su dispositivi edge.
+          Tesi magistrale focalizzata su tecniche di few-shot learning per Computer Vision.
         </p>
         <div class="tags">
           <span class="tag">PyTorch</span>
-          <span class="tag">MLflow</span>
-          <span class="tag">Docker</span>
-          <span class="tag">Kubernetes</span>
-          <span class="tag">FastAPI</span>
-        </div>
-      </div>
-
-      <div class="titem">
-        <p class="tdate">2019 — 2022</p>
-        <h3 class="trole">Data Scientist</h3>
-        <p class="tcompany">Azienda · [da aggiornare]</p>
-        <p class="tdesc">
-          Analisi dati avanzata e sviluppo di modelli predittivi per supportare
-          decisioni di business. Creazione di dashboard e reportistica per stakeholder C-level.
-        </p>
-        <div class="tags">
+          <span class="tag">OpenCV</span>
+          <span class="tag">YOLO</span>
+          <span class="tag">CNN</span>
+          <span class="tag">Few-shot learning</span>
+          <span class="tag">CUDA</span>
           <span class="tag">Python</span>
-          <span class="tag">SQL</span>
-          <span class="tag">scikit-learn</span>
-          <span class="tag">Tableau</span>
         </div>
       </div>
 
     </div>
   </section>
 
-  <!-- CONTACT -->
   <section id="contact">
     <p class="label">Contatti</p>
     <h2 class="title">Lavoriamo insieme</h2>
     <div class="contact-grid">
       <div class="contact-text">
         <p>
-          Hai un progetto che richiede competenze AI? Stai cercando supporto per definire
-          la tua strategia di innovazione? O vuoi semplicemente scambiare idee sul futuro
-          dell'intelligenza artificiale?
+          Hai un progetto che richiede competenze AI? Vuoi esplorare come i modelli
+          fondazionali possono automatizzare o potenziare i tuoi processi?
+          O semplicemente vuoi scambiare idee sul futuro dell&apos;intelligenza artificiale?
         </p>
         <p>Sono sempre aperto a nuove conversazioni.</p>
       </div>
@@ -521,11 +488,11 @@
             <div class="clink-val">danieledinoto97@gmail.com</div>
           </div>
         </a>
-        <a href="https://linkedin.com/in/danieledinoto" class="clink" target="_blank" rel="noopener">
+        <a href="https://www.linkedin.com/in/daniele-di-noto-9b3625183" class="clink" target="_blank" rel="noopener">
           <div class="clink-icon">💼</div>
           <div>
             <div class="clink-lbl">LinkedIn</div>
-            <div class="clink-val">linkedin.com/in/danieledinoto</div>
+            <div class="clink-val">daniele-di-noto</div>
           </div>
         </a>
         <a href="https://github.com/ddn33" class="clink" target="_blank" rel="noopener">
@@ -542,13 +509,12 @@
 </main>
 
 <footer>
-  <p>© 2025 Daniele Dinoto — Costruito con passione per l'innovazione.</p>
+  <p>&copy; 2026 Daniele Di Noto &mdash; Costruito con passione per l&apos;innovazione.</p>
 </footer>
 
 <script>
-  // ── PARTICLE GRAVITY ANIMATION ──
-  const canvas = document.getElementById('canvas');
-  const ctx = canvas.getContext('2d');
+  const canvas = document.getElementById("canvas");
+  const ctx = canvas.getContext("2d");
 
   let W = window.innerWidth;
   let H = window.innerHeight;
@@ -559,12 +525,10 @@
   let mouseActive = false;
 
   const PALETTE = [
-    '#00d4ff', '#22d3ee', '#06b6d4',
-    '#3b82f6', '#60a5fa',
-    '#7c3aed', '#a855f7', '#8b5cf6',
+    "#00d4ff","#22d3ee","#06b6d4",
+    "#3b82f6","#60a5fa",
+    "#7c3aed","#a855f7","#8b5cf6",
   ];
-
-  const N = 200;
 
   class Dot {
     constructor() {
@@ -575,43 +539,32 @@
       this.r = Math.random() * 1.8 + 0.5;
       this.color = PALETTE[Math.floor(Math.random() * PALETTE.length)];
       this.alpha = Math.random() * 0.5 + 0.35;
-      // lighter dots are easier to pull
       this.inv_mass = 1 / (this.r * 0.8 + 0.2);
     }
-
     update() {
       if (mouseActive) {
         const dx = mouse.x - this.x;
         const dy = mouse.y - this.y;
         const d2 = dx * dx + dy * dy;
         const d = Math.sqrt(d2);
-
         if (d > 8) {
-          // Gravitational-style force: G/d^2, capped to avoid explosion at close range
           const f = Math.min(1800 / d2, 1.2) * this.inv_mass;
           this.vx += (dx / d) * f;
           this.vy += (dy / d) * f;
         }
       } else {
-        // Gentle Brownian drift when no cursor
         this.vx += (Math.random() - 0.5) * 0.025;
         this.vy += (Math.random() - 0.5) * 0.025;
       }
-
-      // Damping (inertia creates the trailing effect)
       this.vx *= 0.955;
       this.vy *= 0.955;
-
       this.x += this.vx;
       this.y += this.vy;
-
-      // Soft wall bounce
       if (this.x < 0)  { this.x = 0;  this.vx = Math.abs(this.vx) * 0.4; }
       if (this.x > W)  { this.x = W;  this.vx = -Math.abs(this.vx) * 0.4; }
       if (this.y < 0)  { this.y = 0;  this.vy = Math.abs(this.vy) * 0.4; }
       if (this.y > H)  { this.y = H;  this.vy = -Math.abs(this.vy) * 0.4; }
     }
-
     draw() {
       ctx.beginPath();
       ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
@@ -621,21 +574,20 @@
     }
   }
 
-  const dots = Array.from({ length: N }, () => new Dot());
+  const dots = Array.from({ length: 200 }, () => new Dot());
 
-  // Draw thin lines between nearby dots for a constellation effect
   function drawEdges() {
-    const EDGE_DIST = 75;
+    const D = 75;
     for (let i = 0; i < dots.length; i++) {
       for (let j = i + 1; j < dots.length; j++) {
         const dx = dots[i].x - dots[j].x;
         const dy = dots[i].y - dots[j].y;
-        const d = Math.sqrt(dx * dx + dy * dy);
-        if (d < EDGE_DIST) {
+        const d = Math.sqrt(dx*dx + dy*dy);
+        if (d < D) {
           ctx.beginPath();
           ctx.moveTo(dots[i].x, dots[i].y);
           ctx.lineTo(dots[j].x, dots[j].y);
-          ctx.strokeStyle = `rgba(0,212,255,${(1 - d / EDGE_DIST) * 0.12})`;
+          ctx.strokeStyle = `rgba(0,212,255,${(1 - d/D) * 0.12})`;
           ctx.globalAlpha = 1;
           ctx.lineWidth = 0.5;
           ctx.stroke();
@@ -644,22 +596,21 @@
     }
   }
 
-  // Subtle glow at cursor position
-  function drawCursorGlow() {
+  function drawGlow() {
     if (!mouseActive) return;
-    const g = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 80);
-    g.addColorStop(0, 'rgba(0,212,255,0.08)');
-    g.addColorStop(1, 'rgba(0,212,255,0)');
+    const g = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 90);
+    g.addColorStop(0, "rgba(0,212,255,0.07)");
+    g.addColorStop(1, "rgba(0,212,255,0)");
     ctx.fillStyle = g;
     ctx.globalAlpha = 1;
     ctx.beginPath();
-    ctx.arc(mouse.x, mouse.y, 80, 0, Math.PI * 2);
+    ctx.arc(mouse.x, mouse.y, 90, 0, Math.PI * 2);
     ctx.fill();
   }
 
   function loop() {
     ctx.clearRect(0, 0, W, H);
-    drawCursorGlow();
+    drawGlow();
     drawEdges();
     for (const d of dots) { d.update(); d.draw(); }
     ctx.globalAlpha = 1;
@@ -668,24 +619,20 @@
 
   loop();
 
-  // Track mouse
-  document.addEventListener('mousemove', e => {
+  document.addEventListener("mousemove", e => {
     mouse.x = e.clientX;
     mouse.y = e.clientY;
     mouseActive = true;
   });
-  document.addEventListener('mouseleave', () => { mouseActive = false; });
-
-  // Touch support
-  document.addEventListener('touchmove', e => {
+  document.addEventListener("mouseleave", () => { mouseActive = false; });
+  document.addEventListener("touchmove", e => {
     mouse.x = e.touches[0].clientX;
     mouse.y = e.touches[0].clientY;
     mouseActive = true;
   }, { passive: true });
-  document.addEventListener('touchend', () => { mouseActive = false; });
+  document.addEventListener("touchend", () => { mouseActive = false; });
 
-  // Resize
-  window.addEventListener('resize', () => {
+  window.addEventListener("resize", () => {
     W = window.innerWidth;
     H = window.innerHeight;
     canvas.width = W;
