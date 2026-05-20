@@ -74,8 +74,6 @@
     main { position: relative; z-index: 1; }
 
     section { padding: 6.5rem 10vw; }
-
-    /* sottile separatore tra sezioni — nessun background solido */
     section + section { border-top: 1px solid rgba(24, 32, 53, 0.5); }
 
     .label {
@@ -96,7 +94,7 @@
       margin-bottom: 3rem;
     }
 
-    /* ── HERO ── */
+    /* HERO */
     #hero {
       min-height: 100vh;
       display: flex;
@@ -145,7 +143,7 @@
     .btn-outline { border: 1px solid var(--border); color: var(--text-secondary); }
     .btn-outline:hover { border-color: var(--cyan); color: var(--text-primary); }
 
-    /* ── ABOUT ── */
+    /* ABOUT */
     .about-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -175,11 +173,17 @@
       transition: border-color 0.2s, transform 0.2s;
     }
     .skill-card:hover { border-color: rgba(0,212,255,0.4); transform: translateY(-2px); }
-    .skill-card .icon { font-size: 1.4rem; margin-bottom: 0.5rem; }
+
+    .skill-card .ic {
+      width: 20px; height: 20px;
+      margin-bottom: 0.75rem;
+      color: var(--cyan);
+    }
+    .skill-card .ic svg { width: 100%; height: 100%; display: block; }
     .skill-card h3 { font-size: 0.875rem; font-weight: 600; margin-bottom: 0.25rem; }
     .skill-card p { font-size: 0.775rem; color: var(--text-secondary); line-height: 1.5; }
 
-    /* ── TIMELINE ── */
+    /* TIMELINE */
     .timeline { padding-left: 1.75rem; position: relative; }
     .timeline::before {
       content: "";
@@ -238,7 +242,7 @@
       color: var(--cyan);
     }
 
-    /* ── CONTACT ── */
+    /* CONTACT */
     .contact-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -267,10 +271,11 @@
       width: 38px; height: 38px;
       display: flex; align-items: center; justify-content: center;
       border-radius: 7px;
-      background: rgba(0,212,255,0.09);
-      font-size: 1rem;
+      border: 1px solid var(--border);
+      color: var(--cyan);
       flex-shrink: 0;
     }
+    .clink-icon svg { width: 18px; height: 18px; display: block; }
     .clink-lbl {
       font-size: 0.7rem;
       font-weight: 700;
@@ -319,58 +324,84 @@
     <p class="label">AI Engineer</p>
     <h1 class="hero-name">Daniele<br>Di Noto</h1>
     <p class="hero-sub">
-      Da ricercatore di Computer Vision a ingegnere di sistemi AI in produzione.
-      Costruisco applicazioni intelligenti che trasformano i modelli fondazionali
-      in valore reale e misurabile.
+      Prendo i modelli AI disponibili e li metto al lavoro su problemi concreti.
+      Niente magia: architettura solida, integrazione pulita, output che funzionano sul serio.
     </p>
     <div class="cta-row">
-      <a href="#contact" class="btn btn-filled">Parliamoci →</a>
+      <a href="#contact" class="btn btn-filled">Parliamoci &rarr;</a>
       <a href="#experience" class="btn btn-outline">Vedi il percorso</a>
     </div>
   </section>
 
   <section id="about">
     <p class="label">Chi sono</p>
-    <h2 class="title">Dal laboratorio alla produzione</h2>
+    <h2 class="title">Come ci sono arrivato</h2>
     <div class="about-grid">
       <div class="about-text">
         <p>
-          Ho iniziato la mia carriera tecnica con la <strong>Computer Vision</strong>:
-          reti neurali convoluzionali, rilevamento oggetti, segmentazione semantica.
-          Quel rigore scientifico ha plasmato il modo in cui affronto ogni problema tecnologico.
+          Ho iniziato con la <strong>Computer Vision</strong> durante la magistrale.
+          CNN, YOLO, dati industriali, qualche progetto in ambito medicale.
+          Ho imparato in fretta che i dati reali sono sempre pi&ugrave; complicati di quelli nei benchmark.
         </p>
         <p>
-          Negli anni successivi ho attraversato il mondo della <strong>consulenza per l&apos;innovazione</strong>,
-          dove ho imparato che la tecnologia da sola non basta: occorre sapere come introdurla,
-          farla adottare e farla rendere all&apos;interno di organizzazioni complesse.
+          Dopo la laurea sono passato alla consulenza sull&apos;innovazione &mdash; due anni da junior, uno da senior.
+          Lavori a stretto contatto con le aziende e capisci come funziona davvero l&apos;adozione tecnologica:
+          lenta, piena di resistenze, con aspettative spesso sbagliate.
+          Quella fase mi ha insegnato pi&ugrave; del codice.
         </p>
         <p>
-          Oggi lavoro come <strong>AI Engineer</strong>, costruendo sistemi che sfruttano
-          i modelli fondazionali disponibili — LLM, multimodali, diffusion — per creare
-          applicazioni reali: agenti autonomi, pipeline RAG, automazioni cognitive.
+          Da due anni faccio l&apos;<strong>AI Engineer</strong>.
+          Costruisco sistemi con LLM, RAG e agenti che girano su casi d&apos;uso reali.
+          L&apos;obiettivo &egrave; sempre che funzionino fuori dalla demo.
         </p>
       </div>
       <div class="skills">
+
         <div class="skill-card">
-          <div class="icon">🧠</div>
-          <h3>LLM &amp; Agenti AI</h3>
-          <p>Sistemi agentic, RAG, tool use, orchestrazione multi-agente</p>
+          <div class="ic">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="4" r="2"/><circle cx="4" cy="13" r="2"/><circle cx="20" cy="13" r="2"/>
+              <circle cx="8" cy="20" r="2"/><circle cx="16" cy="20" r="2"/>
+              <line x1="12" y1="6" x2="5.4" y2="12"/><line x1="12" y1="6" x2="18.6" y2="12"/>
+              <line x1="5.4" y1="15" x2="7.4" y2="18"/><line x1="18.6" y1="15" x2="16.6" y2="18"/>
+            </svg>
+          </div>
+          <h3>LLM &amp; Agenti</h3>
+          <p>Agenti, RAG, tool use. Faccio ragionare i modelli su dati reali.</p>
         </div>
+
         <div class="skill-card">
-          <div class="icon">👁️</div>
+          <div class="ic">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+              <circle cx="12" cy="12" r="3"/>
+            </svg>
+          </div>
           <h3>Computer Vision</h3>
-          <p>Object detection, segmentazione, modelli vision-language</p>
+          <p>CNN, YOLO, segmentazione. Utile ogni volta che i dati sono immagini.</p>
         </div>
+
         <div class="skill-card">
-          <div class="icon">⚡</div>
+          <div class="ic">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+            </svg>
+          </div>
           <h3>AI Integration</h3>
-          <p>API, embedding, vector DB, deploy su cloud e edge</p>
+          <p>API, vector store, deploy su cloud. La parte che fa girare tutto in produzione.</p>
         </div>
+
         <div class="skill-card">
-          <div class="icon">🔍</div>
-          <h3>Innovation Strategy</h3>
-          <p>AI readiness, roadmap, change management, governance</p>
+          <div class="ic">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
+            </svg>
+          </div>
+          <h3>Strategia AI</h3>
+          <p>Roadmap, assessment, workshop. So spiegare l&apos;AI anche a chi non vuole sentir parlare di codice.</p>
         </div>
+
       </div>
     </div>
   </section>
@@ -385,12 +416,11 @@
         <h3 class="trole">AI Engineer</h3>
         <p class="tcompany">Freelance &amp; Collaborazioni</p>
         <p class="tdesc">
-          Progettazione e sviluppo di applicazioni AI su misura per clienti
-          in settori come finanza, retail e industria manifatturiera.
-          Costruzione di agenti LLM autonomi, sistemi RAG su knowledge base aziendali,
-          pipeline di automazione cognitiva e integrazione di modelli vision-language
-          per l&apos;analisi di documenti e immagini. Focus su qualità dell&apos;output,
-          latenza e costi operativi in produzione.
+          Lavoro con aziende e startup su progetti AI concreti: agenti LLM,
+          retrieval su basi documentali, integrazione di modelli fondazionali
+          in processi esistenti. Mi occupo dell&apos;intera catena &mdash; architettura,
+          sviluppo, deploy, monitoraggio. Non faccio consulenza vaga:
+          o il sistema funziona o si torna al disegno.
         </p>
         <div class="tags">
           <span class="tag">LangChain</span>
@@ -409,17 +439,15 @@
         <h3 class="trole">Senior Innovation Consultant</h3>
         <p class="tcompany">Consulenza Strategica &amp; Digitale</p>
         <p class="tdesc">
-          Referente tecnico senior su progetti di trasformazione digitale ad alto contenuto AI.
-          Definizione di roadmap di adozione AI per aziende mid-large, con analisi
-          di maturità digitale e disegno dell&apos;architettura tecnologica target.
-          Coordinamento di team multidisciplinari e interfaccia diretta con C-level
-          per la traduzione di visioni strategiche in piani di esecuzione concreti.
+          Progetti pi&ugrave; grossi, pi&ugrave; autonomia, pi&ugrave; responsabilit&agrave;.
+          Assessment su aziende mid-large, architetture AI target, rapporti diretti
+          con il management. Ho imparato a non vendere quello che non si riesce a consegnare.
         </p>
         <div class="tags">
           <span class="tag">AI Strategy</span>
           <span class="tag">Digital Transformation</span>
           <span class="tag">Change Management</span>
-          <span class="tag">Workshop facilitation</span>
+          <span class="tag">Workshop</span>
           <span class="tag">KPI design</span>
         </div>
       </div>
@@ -429,10 +457,9 @@
         <h3 class="trole">Innovation Consultant</h3>
         <p class="tcompany">Consulenza Strategica &amp; Digitale</p>
         <p class="tdesc">
-          Supporto a progetti di innovazione e digitalizzazione per PMI e grandi aziende.
-          Analisi di processi, identificazione di opportunità di automazione e machine learning,
-          prototipazione di soluzioni AI e presentazione a stakeholder tecnici e business.
-          Primo contatto con l&apos;ecosistema LLM emergente e relativi casi d&apos;uso aziendali.
+          Primo lavoro dopo la laurea. Analisi di processi, identificazione di casi d&apos;uso ML,
+          prototipi veloci per testare le idee. Il momento in cui i LLM sono esplosi sul mercato
+          e tutti chiedevano &ldquo;ma come si usa ChatGPT per il nostro business?&rdquo;.
         </p>
         <div class="tags">
           <span class="tag">Process Analysis</span>
@@ -446,13 +473,12 @@
       <div class="titem">
         <p class="tdate">2020 &mdash; 2022</p>
         <h3 class="trole">Computer Vision &amp; ML Engineer</h3>
-        <p class="tcompany">Ricerca Universitaria &amp; Progetti Accademici</p>
+        <p class="tcompany">Ricerca Universitaria</p>
         <p class="tdesc">
-          Durante la laurea magistrale e nell&apos;immediato post-laurea, ricerca applicata
-          su reti neurali convoluzionali per il rilevamento e la classificazione di oggetti
-          in contesti industriali e medicali. Sviluppo di pipeline di training su GPU,
-          data augmentation e ottimizzazione di modelli per il deployment su dispositivi edge.
-          Tesi magistrale focalizzata su tecniche di few-shot learning per Computer Vision.
+          Magistrale con focus su deep learning applicato alla visione artificiale.
+          Tesi su few-shot learning per riconoscimento di oggetti in contesti industriali.
+          Training su GPU, ottimizzazione per edge device, un po&apos; di collaborazioni esterne.
+          La fase in cui ho capito come funziona davvero il ciclo model&nbsp;&rarr;&nbsp;dato&nbsp;&rarr;&nbsp;risultato.
         </p>
         <div class="tags">
           <span class="tag">PyTorch</span>
@@ -470,38 +496,60 @@
 
   <section id="contact">
     <p class="label">Contatti</p>
-    <h2 class="title">Lavoriamo insieme</h2>
+    <h2 class="title">Parliamoci</h2>
     <div class="contact-grid">
       <div class="contact-text">
         <p>
-          Hai un progetto che richiede competenze AI? Vuoi esplorare come i modelli
-          fondazionali possono automatizzare o potenziare i tuoi processi?
-          O semplicemente vuoi scambiare idee sul futuro dell&apos;intelligenza artificiale?
+          Se hai un problema concreto e pensi che l&apos;AI possa aiutare,
+          dimmi cosa stai cercando di fare. Non prometto soluzioni magiche,
+          ma ci ragiono seriamente.
         </p>
-        <p>Sono sempre aperto a nuove conversazioni.</p>
+        <p>Rispondo a tutti.</p>
       </div>
       <div class="contact-links">
+
         <a href="mailto:danieledinoto97@gmail.com" class="clink">
-          <div class="clink-icon">✉️</div>
+          <div class="clink-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+          </div>
           <div>
             <div class="clink-lbl">Email</div>
             <div class="clink-val">danieledinoto97@gmail.com</div>
           </div>
         </a>
+
         <a href="https://www.linkedin.com/in/daniele-di-noto-9b3625183" class="clink" target="_blank" rel="noopener">
-          <div class="clink-icon">💼</div>
+          <div class="clink-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="3"/>
+              <line x1="8" y1="11" x2="8" y2="17"/>
+              <line x1="8" y1="7.5" x2="8" y2="8.5"/>
+              <path d="M12 17v-4a2 2 0 0 1 4 0v4"/>
+              <line x1="12" y1="11" x2="12" y2="17"/>
+            </svg>
+          </div>
           <div>
             <div class="clink-lbl">LinkedIn</div>
             <div class="clink-val">daniele-di-noto</div>
           </div>
         </a>
+
         <a href="https://github.com/ddn33" class="clink" target="_blank" rel="noopener">
-          <div class="clink-icon">⌨️</div>
+          <div class="clink-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="16 18 22 12 16 6"/>
+              <polyline points="8 6 2 12 8 18"/>
+            </svg>
+          </div>
           <div>
             <div class="clink-lbl">GitHub</div>
             <div class="clink-val">github.com/ddn33</div>
           </div>
         </a>
+
       </div>
     </div>
   </section>
@@ -509,7 +557,7 @@
 </main>
 
 <footer>
-  <p>&copy; 2026 Daniele Di Noto &mdash; Costruito con passione per l&apos;innovazione.</p>
+  <p>&copy; 2026 Daniele Di Noto</p>
 </footer>
 
 <script>
